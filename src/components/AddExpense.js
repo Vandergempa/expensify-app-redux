@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { addExpense } from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 
 // to export the unconnected component too
 export class AddExpense extends React.Component {
@@ -9,7 +9,7 @@ export class AddExpense extends React.Component {
         // props.dispatch(addExpense(expense));
         //* props.dispatch is changed so that testing can be done... as a result mapDispatchToProps
         //* is created with the dispatch logic
-        this.props.addExpense(expense);
+        this.props.startAddExpense(expense);
         //switching to homepage using browser routing
         this.props.history.push('/');
     };
@@ -29,7 +29,7 @@ export class AddExpense extends React.Component {
 // It is a way to return the dispatcher functions allowing to obsctruct away from the component itself.
 const mapDispatchToProps = (dispatch) => {
     return {
-        addExpense: (expense) => dispatch(addExpense(expense))
+        startAddExpense: (expense) => dispatch(startAddExpense(expense))
     };
 };
 
