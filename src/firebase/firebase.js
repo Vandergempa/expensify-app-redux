@@ -14,8 +14,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
   
 const database = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
+export { firebase, googleAuthProvider, database as default };
 
 // any datatype can be pushed to firebase. NO ARRAYS, we use this method to store array like objects:
 // database.ref('expenses').push({

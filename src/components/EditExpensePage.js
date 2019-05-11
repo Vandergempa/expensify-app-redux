@@ -9,7 +9,7 @@ export class EditExpensePage extends React.Component {
          // props.dispatch(editExpense(props.expense.id, expense));
         //* props.dispatch is changed so that testing can be done... as a result mapDispatchToProps
         //* is created with the dispatch logic
-        this.props.editExpense(this.props.expense.id, expense);
+        this.props.startEditExpense(this.props.expense.id, expense);
         //switching to homepage using browser routing
         this.props.history.push('/');    
     };
@@ -43,7 +43,7 @@ const mapStateToProps = (state, props) => {
 // It is a way to return the dispatcher functions allowing to obsctruct away from the component itself.
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+        startEditExpense: (id, expense) => dispatch(startEditExpense(id, expense)),
         startRemoveExpense: (id) => dispatch(startRemoveExpense(id))
     };
 };

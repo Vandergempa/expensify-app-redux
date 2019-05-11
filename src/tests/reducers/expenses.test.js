@@ -1,5 +1,4 @@
 import expensesReducer from '../../reducers/expenses';
-import moment from 'moment';
 import expenses from '../fixtures/expenses';
 
 test('Should set default state', () => {
