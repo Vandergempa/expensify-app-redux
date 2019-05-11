@@ -29,7 +29,8 @@ export const addExpense = (expense) => ({
 export const startAddExpense = (expenseData = {}) => {
    // In this case we are going to return a function. The function gets called with dispatch.
    // This lets us use dispatch in the function.
-   return (dispatch) => {
+   return (dispatch, getState) => {
+      const uid = getState().auth.uid;
       // This method of defining default is the same as above:
       const {
          description = '', 
@@ -39,7 +40,9 @@ export const startAddExpense = (expenseData = {}) => {
       } = expenseData;
       const expense = { description, note, amount, createdAt };
 
-      return database.ref('expenses').push(expense).then((ref) => {
+      // HOW TO MAKE THE DATABASE PRIVATE FOR EVERY USER: first we add getState as an argument,
+      // get the user id with getState().auth.uid and then we change the location in ref().
+      return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
          // THis dispatch is gonna make sure that the redux store changes too.
          dispatch(addExpense({
             id: ref.key,
@@ -57,8 +60,9 @@ export const removeExpense = ({ id } = {}) => ({
 });
 
 export const startRemoveExpense = ({ id }) => {
-   return (dispatch) => {
-      return database.ref(`expenses/${id}`).remove().then(() => {
+   return (dispatch, getState) => {
+      const uid = getState().auth.uid;
+      return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
          dispatch(removeExpense({id}));
       });
    };
@@ -73,8 +77,9 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-   return (dispatch) => {
-      return database.ref(`expenses/${id}`).update(updates).then(() => {
+   return (dispatch, getState) => {
+      const uid = getState().auth.uid;
+      return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
          dispatch(editExpense(id, updates));
       });
    };
@@ -88,8 +93,9 @@ export const setExpenses = (expenses) => ({
 
 export const startSetExpenses = () => {
 
-   return (dispatch) => {
-      return database.ref("expenses")
+   return (dispatch, getState) => {
+      const uid = getState().auth.uid;
+      return database.ref(`users/${uid}/expenses`)
       .once('value')
       .then((snapshot) => {
         const expenses = [];
