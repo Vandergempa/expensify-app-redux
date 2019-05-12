@@ -1,0 +1,19 @@
+.button {
+    background: $bilikék;
+    border:none;
+    color: white;
+    // Inline block is needed if we want to take into account the top and bottom margin and padding.
+    display: inline-block;
+    font-size: $font-size-medium;
+    line-height: 1;
+    padding: $s-size;
+    text-decoration: none;
+}
+
+.button--link {
+    background: none;
+}
+
+.button--secondary {
+    background: $light-blue;
+}

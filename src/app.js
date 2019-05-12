@@ -9,6 +9,7 @@ import '../node_modules/normalize.css/normalize.css'
 import './styles/styles.scss';
 import '../node_modules/react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
+import LoadingPage from './components/LoadingPage';
 
 
 const store = configureStore();
@@ -27,7 +28,7 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 // We use the following to navigate between pages when we log out/log in.
 // We need to get the history API outside of the context of the component.

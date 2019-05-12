@@ -1,14 +1,27 @@
 // Colors
 
 $off-black: #20222b;
-$off-white: #a5afd7;
+$off-white: #f7f7f7;
 $off-dark-blue: #333745;
 $purple: #8357c5;
 $blue: #3c4251;
 $light-blue: #464b5e;
+$dark-grey: #333333;
+$grey: #666;
+$bilikék: #1c88bf;
+$dark-blue: #364051;
 
-// Spacing/fontsize
+// Font size
+
+$font-size-large: 1.8rem;
+$font-size-medium: 1.6rem;
+$font-size-small: 1.4rem;
+
+
+// Spacing
 
 $s-size: 1.2rem;
 $m-size: 1.6rem;
+$l-size: 2*1.6rem;
+$xl-size: 3*1.6rem;
 $desktop-breakpoint: 45rem;
