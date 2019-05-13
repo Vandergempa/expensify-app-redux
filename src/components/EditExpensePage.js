@@ -2,9 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { editExpense, removeExpense, startRemoveExpense, startEditExpense } from '../actions/expenses';
+import OptionModal from './OptionModal';
 
 
 export class EditExpensePage extends React.Component {
+    state = {
+        isClicked: false
+    }
     onSubmit = (expense) => {
          // props.dispatch(editExpense(props.expense.id, expense));
         //* props.dispatch is changed so that testing can be done... as a result mapDispatchToProps
@@ -14,9 +18,16 @@ export class EditExpensePage extends React.Component {
         this.props.history.push('/');    
     };
     onRemove = () => {
-       this.props.startRemoveExpense({ id: this.props.expense.id });
-       this.props.history.push('/');    
-   };
+        this.setState(() => ({ isClicked: true }));
+    };
+    onHandleRemoval = () => {
+        this.props.startRemoveExpense({ id: this.props.expense.id });
+        this.props.history.push('/');
+        this.setState(() => ({ isClicked: false })); 
+    };
+    onHandleClosingModal = () => {
+        this.setState(() => ({ isClicked: false }));
+    };
 
     render() {
         return (
@@ -33,6 +44,11 @@ export class EditExpensePage extends React.Component {
                         onSubmit={this.onSubmit}
                     />
                     <button className="button button--secondary" onClick= {this.onRemove} >Remove Expense</button>
+                    <OptionModal 
+                        onItemRemove = { this.state.isClicked }
+                        onHandleClosingModal = { this.onHandleClosingModal }
+                        onHandleRemoval = { this.onHandleRemoval }
+                    />
                 </div>
             </div>
         )

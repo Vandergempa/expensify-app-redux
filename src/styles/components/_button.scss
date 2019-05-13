@@ -17,3 +17,11 @@
 .button--secondary {
     background: $light-blue;
 }
+
+.button__login {
+    margin: 0 $s-size 0 $s-size;
+}
+
+.button__login:hover {
+    cursor: pointer;
+}
